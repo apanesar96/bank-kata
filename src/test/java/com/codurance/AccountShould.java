@@ -1,13 +1,16 @@
-import com.codurance.Account;
-import com.codurance.AccountStatementPrinter;
-import com.codurance.AccountTransactionHandler;
-import com.codurance.Transaction;
+package com.codurance;
+
+import com.codurance.printing.AccountStatementPrinter;
+import com.codurance.transaction.AccountTransactionHandler;
+import com.codurance.transaction.DepositTransaction;
+import com.codurance.transaction.Transaction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.List.of;
@@ -34,19 +37,19 @@ public class AccountShould {
     void deposit_amount() {
         target.deposit(1000);
 
-        verify(transactionHandler).deposit(1000);
+        verify(transactionHandler).recordDeposit(1000);
     }
 
     @Test
     void withdraw_amount() {
         target.withdraw(1000);
 
-        verify(transactionHandler).withdraw(1000);
+        verify(transactionHandler).recordWithdrawal(1000);
     }
 
     @Test
     void print_bank_statement() {
-        List<Transaction> recordedTransactions = of(new Transaction());
+        List<Transaction> recordedTransactions = of(new DepositTransaction(LocalDateTime.now(), 500));
         given(transactionHandler.getRecordedTransactions()).willReturn(recordedTransactions);
 
         target.printStatement();

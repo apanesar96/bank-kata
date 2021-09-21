@@ -1,5 +1,9 @@
 package com.codurance;
 
+import com.codurance.printing.AccountStatementPrinter;
+import com.codurance.transaction.AccountTransactionHandler;
+import com.codurance.transaction.Transaction;
+
 import java.util.List;
 
 public class Account implements AccountService {
@@ -14,12 +18,12 @@ public class Account implements AccountService {
 
     @Override
     public void deposit(int amount) {
-        transactionHandler.deposit(amount);
+        transactionHandler.recordDeposit(amount);
     }
 
     @Override
     public void withdraw(int amount) {
-        transactionHandler.withdraw(amount);
+        transactionHandler.recordWithdrawal(amount);
     }
 
     @Override
