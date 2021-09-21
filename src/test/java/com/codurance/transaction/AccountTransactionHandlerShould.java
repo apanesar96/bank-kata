@@ -8,7 +8,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static java.time.LocalDateTime.now;
 import static java.util.Collections.emptyList;
@@ -30,7 +29,7 @@ public class AccountTransactionHandlerShould {
 
     @BeforeEach
     void setUp() {
-        target = new AccountTransactionHandler(timestampProvider, balanceCalculator);
+        target = new AccountTransactionHandler(timestampProvider);
     }
 
     @Test

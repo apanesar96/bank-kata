@@ -1,7 +1,5 @@
 package com.codurance.transaction;
 
-import com.codurance.calculator.AccountBalanceCalculator;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +10,11 @@ import static java.lang.String.format;
 public class AccountTransactionHandler {
 
     private final TimestampProvider timestampProvider;
-    private final AccountBalanceCalculator balanceCalculator;
 
     private final List<Transaction> recordedTransactions = new ArrayList<>();
 
-    public AccountTransactionHandler(TimestampProvider timestampProvider, AccountBalanceCalculator balanceCalculator) {
+    public AccountTransactionHandler(TimestampProvider timestampProvider) {
         this.timestampProvider = timestampProvider;
-        this.balanceCalculator = balanceCalculator;
     }
 
     public void recordDeposit(int amount) {
