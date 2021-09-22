@@ -31,4 +31,5 @@ public class Account implements AccountService {
         List<Transaction> recordedTransactions = transactionHandler.getRecordedTransactions();
         statementPrinter.printFormattedStatement(recordedTransactions);
     }
+
 }

@@ -36,4 +36,5 @@ public class AccountStatementPrinterShould {
         inOrder.verify(printer).printLine("13/01/2012 || 1000   || 2000");
         inOrder.verify(printer).printLine("10/01/2012 || 1000   || 1000");
     }
+    
 }

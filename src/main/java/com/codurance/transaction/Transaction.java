@@ -23,6 +23,6 @@ public abstract class Transaction {
 
     public abstract String getFormattedAmount();
 
-    public abstract int getTransactionalAmount(int balance);
+    public abstract int getTransactionalAmount();
 
 }

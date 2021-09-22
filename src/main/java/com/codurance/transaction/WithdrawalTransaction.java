@@ -16,8 +16,8 @@ public class WithdrawalTransaction extends Transaction {
     }
 
     @Override
-    public int getTransactionalAmount(int balance) {
-        return balance - amount;
+    public int getTransactionalAmount() {
+        return -amount;
     }
 
 }

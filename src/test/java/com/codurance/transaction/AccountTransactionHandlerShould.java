@@ -1,6 +1,5 @@
 package com.codurance.transaction;
 
-import com.codurance.calculator.AccountBalanceCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,9 +20,6 @@ public class AccountTransactionHandlerShould {
 
     @Mock
     TimestampProvider timestampProvider;
-
-    @Mock
-    AccountBalanceCalculator balanceCalculator;
 
     AccountTransactionHandler target;
 

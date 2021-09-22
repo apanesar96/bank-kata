@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.codurance.calculator.AccountBalanceCalculator.calculateRemainingBalance;
 import static java.lang.String.format;
 
 public class AccountTransactionHandler {
@@ -24,15 +23,21 @@ public class AccountTransactionHandler {
     }
 
     public void recordWithdrawal(int amount) {
-        int remainingBalance = calculateRemainingBalance(0, recordedTransactions);
-        if (amount > remainingBalance) throw new InsufficientFundsException(format("Insufficient funds to withdraw from %d", remainingBalance));
+        int remainingBalance = calculateRemainingBalance(recordedTransactions);
+        if (amount > remainingBalance)
+            throw new InsufficientFundsException(format("Insufficient funds to withdraw from %d", remainingBalance));
 
         LocalDateTime transactionTimestamp = timestampProvider.now();
         WithdrawalTransaction transaction = new WithdrawalTransaction(transactionTimestamp, amount);
         recordedTransactions.add(transaction);
     }
 
+    private int calculateRemainingBalance(List<Transaction> recordedTransactions) {
+        return recordedTransactions.stream().mapToInt(Transaction::getTransactionalAmount).sum();
+    }
+
     public List<Transaction> getRecordedTransactions() {
         return recordedTransactions;
     }
+
 }
